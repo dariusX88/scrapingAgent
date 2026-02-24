@@ -1,0 +1,66 @@
+{
+  "title": "Austrian Companies Scraper - Input Schema",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "ranking_strategy": {
+      "title": "Ranking Strategy",
+      "description": "How to rank Austrian companies: revenue, market_cap, or employees",
+      "type": "string",
+      "enum": ["revenue", "market_cap", "employees"],
+      "default": "revenue"
+    },
+    "top_n": {
+      "title": "Number of Companies",
+      "description": "How many top companies to scrape (max 100)",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "default": 100
+    },
+    "include_tenders": {
+      "title": "Include Tender Data",
+      "description": "Whether to scrape tender information for each company",
+      "type": "boolean",
+      "default": true
+    },
+    "tender_lookback_months": {
+      "title": "Tender Lookback Period (months)",
+      "description": "How many months back to search for tenders",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 36,
+      "default": 12
+    },
+    "max_concurrent_requests": {
+      "title": "Max Concurrent Requests",
+      "description": "Maximum concurrent HTTP requests to prevent rate limiting",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20,
+      "default": 5
+    },
+    "contact_pages_to_scrape": {
+      "title": "Contact Pages to Scrape",
+      "description": "Which pages to scan for contact information",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": ["/", "/contact", "/kontakt", "/impressum", "/imprint", "/about"]
+    },
+    "extract_emails": {
+      "title": "Extract Emails",
+      "description": "Extract email addresses from contact pages",
+      "type": "boolean",
+      "default": true
+    },
+    "extract_phones": {
+      "title": "Extract Phone Numbers",
+      "description": "Extract phone numbers from contact pages (Austrian format: +43, 0xxx)",
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": []
+}
